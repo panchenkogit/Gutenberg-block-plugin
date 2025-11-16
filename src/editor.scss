@@ -1,0 +1,38 @@
+.wp-block-myblocks-myblocks {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: unset;
+
+    > .block-editor-inner-blocks > .block-editor-block-list__layout {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    @for $i from 1 through 4 {
+        &.columns-#{$i} {
+            > .block-editor-inner-blocks > .block-editor-block-list__layout {
+                [data-type="myblocks/myblock"] {
+                    width: calc(100% / #{$i});
+                }
+            }
+        }
+    }
+
+    .image {
+        position: relative;
+
+        &.is_loading {
+            opacity: 0.2;
+        }
+
+        .components-spinner {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    }
+}
