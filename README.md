@@ -10,8 +10,11 @@ React, WordPress Gutenberg, SCSS, ESLint, Prettier, Node.js / npm
 
 ## Project Structure
 
+<<<<<<< HEAD
 ``text
 
+=======
+>>>>>>> 4acd54885e013cda3ad61c3affe52f0fd3edc28c
 myblock/ # plugin
 ├─ build/ # compiled files (copy to WordPress)
 ├─ src/ # source files
@@ -37,9 +40,14 @@ myblock/ # plugin
 
 1. Install dependencies and build:
 
+<<<<<<< HEAD
 ````bash
 npm install
 npm run build
+=======
+   npm install
+   npm run build
+>>>>>>> 4acd54885e013cda3ad61c3affe52f0fd3edc28c
 
 2. Copy the plugin folder to `wp-content/plugins/` in your WordPress installation.
 3. Activate the plugin in the WordPress admin panel.
@@ -59,7 +67,10 @@ React, WordPress Gutenberg, SCSS, ESLint, Prettier, Node.js / npm
 
 ## Структура проекта
 
+<<<<<<< HEAD
 ``text
+=======
+>>>>>>> 4acd54885e013cda3ad61c3affe52f0fd3edc28c
 myblock/ # плагин
 ├─ build/ # скомпилированные файлы (копировать в WordPress)
 ├─ src/ # исходные файлы
@@ -81,10 +92,17 @@ myblock/ # плагин
 ├─ package-lock.json
 └─ README.md # documentation
 
+<<<<<<< HEAD
+=======
+markdown
+Копировать код
+
+>>>>>>> 4acd54885e013cda3ad61c3affe52f0fd3edc28c
 ## Как установить и запустить
 
 1. Установите зависимости и соберите плагин:
 
+<<<<<<< HEAD
 ```bash
 npm install
 npm run build
@@ -93,3 +111,14 @@ npm run build
 3. Активируйте плагин через админку WordPress.
 4. Блоки появятся в редакторе Gutenberg.
 ````
+=======
+npm install
+npm run build
+
+markdown
+Копировать код
+
+2. Скопируйте папку плагина в `wp-content/plugins/` вашей установки WordPress.
+3. Активируйте плагин через админку WordPress.
+4. Блоки появятся в редакторе Gutenberg.
+>>>>>>> 4acd54885e013cda3ad61c3affe52f0fd3edc28c
