@@ -1,7 +1,7 @@
 <?php
-// Plugin Name: My Block 
+// Plugin Name: Dynamic Posts
 // Plugin URI: https://woo-test/
-// Description: Simple Block
+// Description: Gutenberg Dynamic Block
 // Author: Me
 // Author URI: https://woo-test/
 
