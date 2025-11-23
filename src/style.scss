@@ -1,2 +1,19 @@
 .wp-block-myblocks-dynamicblock {
+	display: flex;
+	gap: 20px;
+	align-items: flex-start;
+	justify-content: space-between;
+
+	> div {
+		width: calc(50% - 10px);
+		background: #f5f5f5;
+		border-radius: 10px;
+		padding: 20px;
+		box-sizing: border-box;
+
+		img {
+			min-width: 100%;
+			height: auto;
+		}
+	}
 }
