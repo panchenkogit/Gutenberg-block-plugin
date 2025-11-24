@@ -9,7 +9,9 @@ function myblock_latest_posts_block($attributes)
 {
     $arg = array(
         'posts_per_page' => $attributes['postsPerPage'],
-        'post_status' => 'publish'
+        'post_status' => 'publish',
+        'order' => $attributes['order'],
+        'orderby' => $attributes['orderBy']
     );
     $latest_posts = get_posts($arg);
 

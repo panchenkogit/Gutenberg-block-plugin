@@ -35,12 +35,16 @@ function Edit({
 }) {
   const {
     postsPerPage,
-    showImage
+    showImage,
+    order,
+    orderBy
   } = attributes;
   const posts = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => select('core').getEntityRecords('postType', 'post', {
     per_page: postsPerPage,
-    _embed: true
-  }, [postsPerPage]));
+    _embed: true,
+    order: order,
+    orderby: orderBy
+  }, [postsPerPage, order, orderBy]));
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
   const onChangeToggleImage = value => {
     setAttributes({
@@ -50,6 +54,16 @@ function Edit({
   const onChangePostsPerPage = value => {
     setAttributes({
       postsPerPage: value
+    });
+  };
+  const onChangeOrder = value => {
+    setAttributes({
+      order: value
+    });
+  };
+  const onChangeOrderBy = value => {
+    setAttributes({
+      orderBy: value
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
@@ -64,7 +78,36 @@ function Edit({
           numberOfItems: postsPerPage,
           onNumberOfItemsChange: onChangePostsPerPage,
           maxItems: 10,
-          minItems: 1
+          minItems: 1,
+          order: order,
+          onOrderChange: onChangeOrder,
+          orderBy: orderBy,
+          orderByChange: onChangeOrderBy
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: "Order",
+          value: order,
+          options: [{
+            label: 'Descending',
+            value: 'desc'
+          }, {
+            label: 'Ascending',
+            value: 'asc'
+          }],
+          onChange: onChangeOrder
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: "Order By",
+          value: orderBy,
+          options: [{
+            label: 'Date',
+            value: 'date'
+          }, {
+            label: 'Title',
+            value: 'title'
+          }, {
+            label: 'Menu Order',
+            value: 'menu_order'
+          }],
+          onChange: onChangeOrderBy
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {

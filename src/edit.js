@@ -1,12 +1,17 @@
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
-import { PanelBody, ToggleControl, QueryControls } from '@wordpress/components';
+import {
+	PanelBody,
+	ToggleControl,
+	SelectControl,
+	QueryControls,
+} from '@wordpress/components';
 import { format, dateI18n, getSettings } from '@wordpress/date';
 
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
-	const { postsPerPage, showImage } = attributes;
+	const { postsPerPage, showImage, order, orderBy } = attributes;
 
 	const posts = useSelect((select) =>
 		select('core').getEntityRecords(
@@ -15,8 +20,10 @@ export default function Edit({ attributes, setAttributes }) {
 			{
 				per_page: postsPerPage,
 				_embed: true,
+				order: order,
+				orderby: orderBy,
 			},
-			[postsPerPage]
+			[postsPerPage, order, orderBy]
 		)
 	);
 
@@ -27,6 +34,12 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 	const onChangePostsPerPage = (value) => {
 		setAttributes({ postsPerPage: value });
+	};
+	const onChangeOrder = (value) => {
+		setAttributes({ order: value });
+	};
+	const onChangeOrderBy = (value) => {
+		setAttributes({ orderBy: value });
 	};
 
 	return (
@@ -43,6 +56,30 @@ export default function Edit({ attributes, setAttributes }) {
 						onNumberOfItemsChange={onChangePostsPerPage}
 						maxItems={10}
 						minItems={1}
+						order={order}
+						onOrderChange={onChangeOrder}
+						orderBy={orderBy}
+						orderByChange={onChangeOrderBy}
+					/>
+					<SelectControl
+						label='Order'
+						value={order}
+						options={[
+							{ label: 'Descending', value: 'desc' },
+							{ label: 'Ascending', value: 'asc' },
+						]}
+						onChange={onChangeOrder}
+					/>
+
+					<SelectControl
+						label='Order By'
+						value={orderBy}
+						options={[
+							{ label: 'Date', value: 'date' },
+							{ label: 'Title', value: 'title' },
+							{ label: 'Menu Order', value: 'menu_order' },
+						]}
+						onChange={onChangeOrderBy}
 					/>
 				</PanelBody>
 			</InspectorControls>
