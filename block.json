@@ -25,6 +25,10 @@
 		"orderBy": {
 			"type": "string",
 			"default": "date"
+		},
+		"category": {
+			"type": "number",
+			"default": 1
 		}
 	}
 }

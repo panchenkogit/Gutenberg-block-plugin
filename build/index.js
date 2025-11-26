@@ -37,14 +37,21 @@ function Edit({
     postsPerPage,
     showImage,
     order,
-    orderBy
+    orderBy,
+    category
   } = attributes;
   const posts = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => select('core').getEntityRecords('postType', 'post', {
     per_page: postsPerPage,
     _embed: true,
     order: order,
-    orderby: orderBy
-  }, [postsPerPage, order, orderBy]));
+    orderby: orderBy,
+    categories: category ? category : []
+  }, [postsPerPage, order, orderBy, category]));
+  const categories = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => {
+    return select('core').getEntityRecords('taxonomy', 'category', {
+      per_page: -1
+    });
+  }, []);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)();
   const onChangeToggleImage = value => {
     setAttributes({
@@ -66,6 +73,11 @@ function Edit({
       orderBy: value
     });
   };
+  const onChangeCategory = value => {
+    setAttributes({
+      category: value
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
@@ -82,7 +94,10 @@ function Edit({
           order: order,
           onOrderChange: onChangeOrder,
           orderBy: orderBy,
-          orderByChange: onChangeOrderBy
+          orderByChange: onChangeOrderBy,
+          categoriesList: categories,
+          selectedCategoryId: category,
+          onCategoryChange: onChangeCategory
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: "Order",
           value: order,

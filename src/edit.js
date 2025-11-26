@@ -11,7 +11,7 @@ import { format, dateI18n, getSettings } from '@wordpress/date';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
-	const { postsPerPage, showImage, order, orderBy } = attributes;
+	const { postsPerPage, showImage, order, orderBy, category } = attributes;
 
 	const posts = useSelect((select) =>
 		select('core').getEntityRecords(
@@ -22,10 +22,16 @@ export default function Edit({ attributes, setAttributes }) {
 				_embed: true,
 				order: order,
 				orderby: orderBy,
+				categories: category ? category : [],
 			},
-			[postsPerPage, order, orderBy]
+			[postsPerPage, order, orderBy, category]
 		)
 	);
+	const categories = useSelect((select) => {
+		return select('core').getEntityRecords('taxonomy', 'category', {
+			per_page: -1,
+		});
+	}, []);
 
 	const blockProps = useBlockProps();
 
@@ -40,6 +46,9 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 	const onChangeOrderBy = (value) => {
 		setAttributes({ orderBy: value });
+	};
+	const onChangeCategory = (value) => {
+		setAttributes({ category: value });
 	};
 
 	return (
@@ -60,6 +69,9 @@ export default function Edit({ attributes, setAttributes }) {
 						onOrderChange={onChangeOrder}
 						orderBy={orderBy}
 						orderByChange={onChangeOrderBy}
+						categoriesList={categories}
+						selectedCategoryId={category}
+						onCategoryChange={onChangeCategory}
 					/>
 					<SelectControl
 						label='Order'

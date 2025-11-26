@@ -11,8 +11,11 @@ function myblock_latest_posts_block($attributes)
         'posts_per_page' => $attributes['postsPerPage'],
         'post_status' => 'publish',
         'order' => $attributes['order'],
-        'orderby' => $attributes['orderBy']
+        'orderby' => $attributes['orderBy'],
     );
+    if (isset($attributes['category'])) {
+        $arg['category_in'] = $attributes['category'];
+    }
     $latest_posts = get_posts($arg);
 
     $html = "<div " . get_block_wrapper_attributes() . ">";
